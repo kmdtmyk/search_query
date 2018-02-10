@@ -1,5 +1,14 @@
 require "search_query/version"
 
 module SearchQuery
-  # Your code goes here...
+
+  def self.parse(text)
+    text.split(' ').map do |word|
+      {
+        name: nil,
+        value: word,
+      }
+    end
+  end
+
 end
