@@ -6,26 +6,32 @@ RSpec.describe SearchQuery do
 
   describe 'parse' do
 
-    it 'one word' do
-      expect(SearchQuery.parse('foo')).to eq([
-        {
-          name: nil,
-          value: 'foo'
-        },
-      ])
-    end
+    describe 'result length' do
 
-    it 'two words' do
-      expect(SearchQuery.parse('foo bar')).to eq([
-        {
-          name: nil,
-          value: 'foo'
-        },
-        {
-          name: nil,
-          value: 'bar'
-        },
-      ])
+      it 'one word' do
+        expect(SearchQuery.parse('foo').length).to eq(1)
+      end
+
+      describe 'two words' do
+
+        it 'separated by space' do
+          expect(SearchQuery.parse('foo bar').length).to eq(2)
+        end
+
+        it 'separated by double-byte space' do
+          expect(SearchQuery.parse('foo　bar').length).to eq(2)
+        end
+
+        it 'separated by tab' do
+          expect(SearchQuery.parse("foo\tbar").length).to eq(2)
+        end
+
+        it 'separated by consective space' do
+          expect(SearchQuery.parse('foo  bar').length).to eq(2)
+        end
+
+      end
+
     end
 
   end
