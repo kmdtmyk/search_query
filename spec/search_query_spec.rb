@@ -8,6 +8,14 @@ RSpec.describe SearchQuery do
 
     describe 'result length' do
 
+      it 'nil' do
+        expect(SearchQuery.parse(nil).length).to eq(0)
+      end
+
+      it 'blank' do
+        expect(SearchQuery.parse('').length).to eq(0)
+      end
+
       it 'one word' do
         expect(SearchQuery.parse('foo').length).to eq(1)
       end
