@@ -4,9 +4,20 @@ RSpec.describe SearchQuery do
     expect(SearchQuery::VERSION).not_to be nil
   end
 
-  describe 'parse' do
+  describe '#parse' do
 
-    describe 'result length' do
+    describe 'data' do
+
+      it 'text' do
+        expect(SearchQuery.parse('foo').first).to eq({
+          name: nil,
+          value: 'foo',
+        })
+      end
+
+    end
+
+    describe 'length' do
 
       it 'nil' do
         expect(SearchQuery.parse(nil).length).to eq(0)
