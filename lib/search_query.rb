@@ -4,7 +4,7 @@ module SearchQuery
 
   def self.parse(text)
     return [] if text.nil?
-    text.gsub('　', ' ').split(' ').map do |word|
+    text.gsub('　', ' ').split.map do |word|
       match = /((?<name>.+)[:：])?(?<value>.+)/.match(word)
       name = match[:name]
       value = match[:value]

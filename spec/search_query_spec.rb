@@ -63,6 +63,10 @@ RSpec.describe SearchQuery do
           expect(SearchQuery.parse('foo  bar').length).to eq(2)
         end
 
+        it 'ignore before and after space' do
+          expect(SearchQuery.parse(' foo bar ').length).to eq(2)
+        end
+
       end
 
     end
