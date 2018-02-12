@@ -15,6 +15,20 @@ RSpec.describe SearchQuery do
         })
       end
 
+      it 'text with name' do
+        expect(SearchQuery.parse('type:foo').first).to eq({
+          name: 'type',
+          value: 'foo',
+        })
+      end
+
+      it 'text with name (full-width colon)' do
+        expect(SearchQuery.parse('タイプ：foo').first).to eq({
+          name: 'タイプ',
+          value: 'foo',
+        })
+      end
+
     end
 
     describe 'length' do
